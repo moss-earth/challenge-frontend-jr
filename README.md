@@ -22,3 +22,4 @@ O que vai ser avaliado:
 - Readme de como rodar o seu projeto
 
 Como backend sugerimos a utilização da biblioteca https://github.com/typicode/json-server
+.
