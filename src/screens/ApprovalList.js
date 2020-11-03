@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Box, Container, Typography } from '@material-ui/core';
 import Header from '../components/Header';
 import OrdersTable from '../components/OrdersTable';
+import EmptyTable from '../components/EmptyTable';
 import { style } from './styles';
 
 const ApprovalList = () => {
@@ -13,7 +14,7 @@ const ApprovalList = () => {
     }, [])
 
     const getPendingOrders = () => {
-        axios.get('http://localhost:3004/orders?status=under_approval')
+        axios.get('http://localhost:3004/orders?status=under_approval&_sort=date&_order=asc')
         .then((response) => {
             setOrders(response.data)
         }).catch(error => console.log(error))
@@ -29,10 +30,10 @@ const ApprovalList = () => {
 
     return ( 
         <Container>
-            <Header text={'aprovação'}/>
+            <Header back={true}/>
             <Box style={style}>
                 <Typography variant="h5" gutterBottom>compras pendentes</Typography>
-                <OrdersTable orders={orders} resolveOrder={resolveOrder}/>
+                {orders.length === 0 ? <EmptyTable/> : <OrdersTable orders={orders} resolveOrder={resolveOrder}/>}
             </Box>
         </Container>
      );

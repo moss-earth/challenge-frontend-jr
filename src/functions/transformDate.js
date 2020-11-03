@@ -10,10 +10,10 @@ export const transformStatus = (status) => {
     if(!status){
         return ''
     }
-    const map = {
+    const correspondence = {
         "under_approval": "Sob Aprovação",
         "approved": "Aprovado",
         "rejected": "Rejeitado"
     }
-    return map[status]
+    return correspondence[status]
 }

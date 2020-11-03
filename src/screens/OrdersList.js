@@ -13,7 +13,7 @@ const OrdersList = () => {
     }, [])
 
     const getOrders = () => {
-        axios.get('http://localhost:3004/orders')
+        axios.get('http://localhost:3004/orders?_sort=date&_order=desc')
         .then((response) => {
             setOrders(response.data)
         }).catch(error => console.log(error))
@@ -21,7 +21,7 @@ const OrdersList = () => {
 
     return ( 
         <Container>
-            <Header text={'histórico'}/>
+            <Header back={true}/>
             <Box style={style}>
                 <Typography variant="h5" gutterBottom>histórico</Typography>
                 <OrdersTable orders={orders}/>

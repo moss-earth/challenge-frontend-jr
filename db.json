@@ -30,7 +30,7 @@
       "price": 10,
       "date": "2020-10-29",
       "project": "Ituxi",
-      "status": "under_approval"
+      "status": "approved"
     },
     {
       "id": 10,
@@ -46,7 +46,7 @@
       "price": "5",
       "date": "2020-10-20",
       "project": "Juma",
-      "status": "under_approval"
+      "status": "rejected"
     },
     {
       "id": 1604089954530,
@@ -73,14 +73,6 @@
       "status": "under_approval"
     },
     {
-      "id": 1604096210187,
-      "qnt": "",
-      "price": "",
-      "date": "",
-      "project": "",
-      "status": "rejected"
-    },
-    {
       "id": 1604096468185,
       "qnt": "100",
       "price": "5",
@@ -94,7 +86,7 @@
       "price": "12",
       "date": "2020-10-29",
       "project": "Agrocortex",
-      "status": "under_approval"
+      "status": "rejected"
     },
     {
       "id": 1604097353253,
@@ -103,14 +95,6 @@
       "date": "2020-10-29",
       "project": "Ituxi",
       "status": "under_approval"
-    },
-    {
-      "id": 1604097722520,
-      "qnt": "",
-      "price": "",
-      "date": "",
-      "project": "",
-      "status": "rejected"
     },
     {
       "id": 1604097977924,
@@ -174,6 +158,22 @@
       "price": "10",
       "date": "2020-10-30",
       "project": "Juma",
+      "status": "under_approval"
+    },
+    {
+      "id": 1604351559292,
+      "qnt": "",
+      "price": "",
+      "date": "",
+      "project": "",
+      "status": "rejected"
+    },
+    {
+      "id": 1604352493837,
+      "qnt": "6",
+      "price": "10",
+      "date": "2020-11-01",
+      "project": "Agrocortex",
       "status": "under_approval"
     }
   ],
