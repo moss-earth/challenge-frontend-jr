@@ -1,24 +1,38 @@
 # challenge-frontend-jr
 # Teste para frontend junior
 
-Nosso time de compras precisa de uma aplicação para genrenciar a compras de crédito de carbono no varejo.
-Os dados de uma compra são:
-- quantidade de créditos
-- preço em dólar
-- data da compra
-- nome do projeto onde os créditos foram certificados.
-- status da compra
+Aplicação para simular um produto interno de gestão de compras de crédito de carbono, feita em ReactJS.
 
-O processo de compra acontece da seguinte forma:
-- O time de operações cria uma compra informado os dados necessários.
-- O time financeiro aprova a compra ou rejeita.
+### bibliotecas utilizadas:
 
-O que vai ser avaliado:
-- HTML semântico
-- Visual agradável e feedbacks visuais
-- Mobile First
-- Conhecimento da linguagem Javascript
-- Testes automatizados (diferencial)
-- Readme de como rodar o seu projeto
+- UI: Material-UI
+- HTTP client: axios
+- Gerenciador de rotas: React Router
+- Testes: React Testing Library
+- Backend: json server https://github.com/typicode/json-server
 
-Como backend sugerimos a utilização da biblioteca https://github.com/typicode/json-server
+## como rodar
+
+Após clonar este repositório, dentro do diretório criado: 
+
+```
+npm install 
+```
+Para instalar todas as dependências.
+
+```
+npm install -g json-server
+```
+Instala a biblioteca usada como backend, caso ainda não a tenha instalada.
+
+```
+npm run json-mock-server
+```
+Por padrão a porta utilizada é a 3004. Caso queira usar outra, por favor, altere o arquivo .env disponilizado aqui propositalmente e o script json-mock-server no package.json.
+
+Por fim, em outra tab do terminal:
+````
+npm start
+````
+
+.
