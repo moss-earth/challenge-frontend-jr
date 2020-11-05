@@ -1,3 +1,3 @@
 export const style = {
-    paddingTop: '13vh'
+    paddingTop: '15vh'
 }

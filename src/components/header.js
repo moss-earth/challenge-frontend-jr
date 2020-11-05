@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { AppBar, Button, makeStyles, Menu, MenuItem, Toolbar } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import { Link, useHistory } from 'react-router-dom';
 import { goBack } from '../router/coordinator';
 
 const useStyles = makeStyles((theme) => ({
     bar: {
-        display: "flex",
-        justifyContent: "space-between"
+        display: 'flex',
+        justifyContent: 'space-between'
     }
 }))
 const Header = (props) => {
@@ -20,7 +20,7 @@ const Header = (props) => {
     }
 
     return (
-        <AppBar position="fixed" >
+        <AppBar position='fixed'>
             <Toolbar className={classes.bar}>
                 <Button onClick={() => handleMenu(true)}>
                     <MenuIcon/>
@@ -36,7 +36,7 @@ const Header = (props) => {
                     <MenuItem dense onClick={() => handleMenu(false)} component={Link} to={'/aprovar'}>Aprovação</MenuItem>
                     <MenuItem dense onClick={() => handleMenu(false)} component={Link} to={'/historico'}>Histórico</MenuItem>
                 </Menu>
-                {props.back ? <Button variant="text" onClick={() => goBack(history)}>voltar</Button> : <></>}
+                {props.back ? <Button variant='text' onClick={() => goBack(history)}>voltar</Button> : <></>}
             </Toolbar>
         </AppBar>
     )

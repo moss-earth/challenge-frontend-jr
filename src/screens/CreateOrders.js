@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import useForm from '../hooks/useForm';
-import { Box, Button, Container, InputAdornment, makeStyles, MenuItem, Snackbar, TextField, Typography } from '@material-ui/core'
-import Header from '../components/Header';
-import { goToOrder, goToOrdersList } from '../router/coordinator';
 import { useHistory } from 'react-router-dom';
+import { Box, Button, Container, InputAdornment, makeStyles, MenuItem, Snackbar, TextField, Typography } from '@material-ui/core'
+import { getOrders, postOrder } from '../requests';
+import useForm from '../hooks/useForm';
+import Header from '../components/Header';
 import { style } from './styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -23,27 +22,24 @@ const CreateOrders = () => {
     const history = useHistory();
 
     const [projectList, setProjectList] = useState([])
+    const [openAlert, setOpenAlert] = useState(false)
     const [form, onChangeInput] = useForm({
         qnt: '',
         price: '',
         orderDate: '',
         project: ''
     })
-    const [openAlert, setOpenAlert] = useState(false)
-
+    
     useEffect(() => {
-        axios.get('http://localhost:3004/projects')
-        .then((response) => {
-            setProjectList(response.data)
-        })
+        getOrders('projects', setProjectList)
     }, [])
-
+    
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         onChangeInput(name, value)
     }
 
-    const orderFormSubmit = (event) => {
+    const handleFormSubmit = (event) => {
         event.preventDefault()
         if(!form.qnt || !form.price || !form.orderDate || !form.project) {
             setOpenAlert(true)
@@ -61,89 +57,81 @@ const CreateOrders = () => {
             project: form.project,
             status: 'under_approval'
         }
-        axios.post('http://localhost:3004/orders', body)
-        .then((response) => 
-            goToOrder(history, body.id)
-        )
-        .catch(err => console.log(err))
+        postOrder('orders', body, history)
     }
 
-    const handleClose = () => {
+    const handleCloseAlert = () => {
         setOpenAlert(false)
     }
 
     return ( 
-        <Container maxWidth="sm">
+        <Container maxWidth='sm'>
             <Header/>
             <Box style={style}>
-                <Typography variant="h5" gutterBottom>nova ordem de compra</Typography>
-                <form className={classes.form} onSubmit={orderFormSubmit} data-testid="form">
+                <Typography variant='h5' gutterBottom>NOVA ORDEM</Typography>
+                <form className={classes.form} onSubmit={handleFormSubmit} data-testid='form'>
                     <TextField
-                        name="qnt"
-                        label="Quantidade de créditos"
-                        variant="filled"
-                        color="secondary"
-                        type="number"
-                        margin="normal"
-                        placeholder="10"
+                        name='qnt'
+                        label='Quantidade de créditos'
+                        variant='filled'
+                        color='secondary'
+                        type='number'
+                        margin='normal'
+                        placeholder='10'
                         value={form.qnt}
                         onChange={handleInputChange}
-                        InputLabelProps={{
-                            shrink: true
-                        }}
+                        InputLabelProps={{  shrink: true }}
+                        InputProps={{ 'data-testid': 'qntInput' }}
                     />
                     <TextField
-                        name="price"
-                        label="Preço (em dólares)"
-                        variant="filled"
-                        color="secondary"
-                        type="number"
-                        margin="normal"
-                        placeholder="7"
+                        name='price'
+                        label='Preço (em dólares)'
+                        variant='filled'
+                        color='secondary'
+                        type='number'
+                        margin='normal'
+                        placeholder='10'
                         value={form.price}
                         onChange={handleInputChange}
                         InputProps={{
                             startAdornment:
-                                <InputAdornment position="start">$</InputAdornment>
+                                <InputAdornment position='start'>$</InputAdornment>                            
                         }}
+                        InputProps={{ 'data-testid': 'priceInput'}}
+                        InputLabelProps={{ shrink: true }}
                     />
                     <TextField
-                        name="orderDate"
-                        label="Data da compra"
-                        variant="filled"
-                        color="secondary"
-                        type="date"
-                        margin="normal"
+                        name='orderDate'
+                        label='Data da compra'
+                        variant='filled'
+                        color='secondary'
+                        type='date'
+                        margin='normal'
                         value={form.orderDate}
                         onChange={handleInputChange}
-                        InputLabelProps={{
-                            shrink: true
-                        }}
+                        InputLabelProps={{ shrink: true }}
+                        InputProps={{ 'data-testid': 'dateInput' }}
                     />
                     <TextField
-                        name="project"
-                        label="Projeto"
-                        variant="filled"
-                        color="secondary"
+                        name='project'
+                        label='Projeto'
+                        variant='filled'
+                        color='secondary'
                         select={true}
-                        margin="normal"
+                        margin='normal'
                         value={form.project}
                         onChange={handleInputChange}
-                        InputLabelProps={{
-                            shrink: true
-                        }}
+                        InputLabelProps={{ shrink: true }}
+                        SelectProps={{ 'data-testid': 'projectInput' }}
                     >
                         {projectList.map(project => {
-                            return <MenuItem value={project} key={project}>{project}</MenuItem>
+                            return <MenuItem data-testid={project} value={project} key={project} >{project}</MenuItem>
                         })}
                     </TextField>
-                    <Button className={classes.submit} variant="contained" color="primary" disableElevation type="submit">
+                    <Button className={classes.submit} variant='contained' color='primary' disableElevation type='submit'>
                         criar ordem
                     </Button>                
                 </form>
-                <Button fullWidth className={classes.submit} variant="contained" color="secondary" disableElevation onClick={() => goToOrdersList(history)}>
-                    ver todas
-                </Button>                
             </Box>
             <Snackbar
                 anchorOrigin={{
@@ -152,8 +140,8 @@ const CreateOrders = () => {
                 }}
                 open={openAlert}
                 autoHideDuration={5000}
-                onClose={handleClose}
-                message="Todos os campos devem ser preenchidos."
+                onClose={handleCloseAlert}
+                message='Todos os campos devem ser preenchidos.'
             />
         </Container>
      );

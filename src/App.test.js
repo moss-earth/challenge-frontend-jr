@@ -3,6 +3,6 @@ import App from './App';
 
 test('renders page heading', () => {
   render(<App />);
-  const mainHeading = screen.getByText(/nova ordem de compra/i);
+  const mainHeading = screen.getByText(/nova ordem/i);
   expect(mainHeading).toBeInTheDocument();
 });

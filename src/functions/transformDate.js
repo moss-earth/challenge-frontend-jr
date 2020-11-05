@@ -11,9 +11,9 @@ export const transformStatus = (status) => {
         return ''
     }
     const correspondence = {
-        "under_approval": "Sob Aprovação",
-        "approved": "Aprovado",
-        "rejected": "Rejeitado"
+        'under_approval': 'Sob Aprovação',
+        'approved': 'Aprovado',
+        'rejected': 'Rejeitado'
     }
     return correspondence[status]
 }

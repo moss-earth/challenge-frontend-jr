@@ -1,7 +1,3 @@
-export const goToOrdersList = (history) => {
-    history.push(`/historico`)
-}
-
 export const goToApprovalList = (history) => {
     history.push('/aprovar')
 }
