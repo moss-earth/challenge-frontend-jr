@@ -13,11 +13,24 @@ Aplicação para simular um produto interno de gestão de compras de crédito de
 
 ## como rodar
 
-```
-npm install &&  npm run json-mock-server
-```
+Após clonar este repositório, dentro do diretório criado: 
 
-em outra janela do terminal:
+```
+npm install 
+```
+Para instalar todas as dependências.
+
+```
+npm install -g json-server
+```
+Instala a biblioteca usada como backend, caso ainda não a tenha instalada.
+
+```
+npm run json-mock-server
+```
+Por padrão a porta utilizada é a 3004. Caso queira usar outra, por favor, altere o arquivo .env disponilizado aqui propositalmente e o script json-mock-server no package.json.
+
+Por fim, em outra tab do terminal:
 ````
 npm start
 ````
