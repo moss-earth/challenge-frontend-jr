@@ -14,7 +14,7 @@ Aplicação para simular um produto interno de gestão de compras de crédito de
 ## como rodar
 
 ```
-npm install &&  npm run json
+npm install &&  npm run json-mock-server
 ```
 
 em outra janela do terminal:
